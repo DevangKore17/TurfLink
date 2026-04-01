@@ -13,7 +13,7 @@ export const settingsGroups = [
     items: [
       { id: 'notifications', label: 'Notifications', type: 'toggle', enabled: true },
       { id: 'location', label: 'Location', type: 'link', value: 'Chennai' },
-      { id: 'appearance', label: 'Appearance', type: 'link', value: 'Light' },
+      { id: 'appearance', label: 'Dark Mode', type: 'toggle', enabled: false },
     ],
   },
   {

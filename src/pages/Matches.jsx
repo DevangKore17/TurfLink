@@ -125,16 +125,32 @@ function Matches() {
             </div>
 
             <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3">
-              <p className="text-xs text-text-secondary">Payable</p>
+              <p className="text-xs text-text-secondary"></p>
               <div className="flex items-center gap-2">
                 <p className="text-sm font-semibold text-text-primary">₹{booking.price}</p>
-                <button
-                  type="button"
-                  onClick={() => openPayment(booking)}
-                  className="rounded-full bg-brand-primary px-3 py-1 text-[11px] font-semibold text-white"
-                >
-                  Pay
-                </button>
+                {booking.status === 'Pending' ? (
+                  <button
+                    type="button"
+                    onClick={() => openPayment(booking)}
+                    className="rounded-full bg-brand-primary px-3 py-1 text-[11px] font-semibold text-white"
+                  >
+                    Complete Payment
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFeedback({
+                        open: true,
+                        title: 'Booking Pass',
+                        message: `${booking.sport} booking is confirmed. Your turf pass is available in this demo.`,
+                      })
+                    }
+                    className="rounded-full bg-brand-light px-3 py-1 text-[11px] font-semibold text-brand-primary"
+                  >
+                    View Pass
+                  </button>
+                )}
               </div>
             </div>
           </motion.article>

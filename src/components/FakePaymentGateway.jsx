@@ -50,7 +50,7 @@ function FakePaymentGateway({ open, title, amount, selectedMethod, onSelectMetho
             </div>
 
             <div className="mt-4 flex items-center justify-between rounded-card bg-slate-50 px-3 py-3">
-              <span className="text-xs text-text-secondary">Amount payable</span>
+              <span className="text-xs text-text-secondary">Amount  </span>
               <span className="text-base font-semibold text-text-primary">₹{amount}</span>
             </div>
 

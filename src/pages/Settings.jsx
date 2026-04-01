@@ -5,9 +5,11 @@ import FakeLoadingScreen from '../components/FakeLoadingScreen'
 import FeedbackModal from '../components/FeedbackModal'
 import Header from '../components/Header'
 import SettingsItem from '../components/SettingsItem'
+import { useTheme } from '../context/ThemeContext'
 import { settingsGroups } from '../data/settings'
 
 function Settings() {
+  const { isDark, toggleTheme } = useTheme()
   const [loading, setLoading] = useState({ open: false, message: '' })
   const [feedback, setFeedback] = useState({ open: false, title: '', message: '' })
 
@@ -28,6 +30,12 @@ function Settings() {
   }
 
   const handleSettingsAction = (item) => {
+    if (item.id === 'appearance') {
+      toggleTheme()
+      showMessage('Theme Updated', `App switched to ${item.enabled ? 'dark' : 'light'} mode.`)
+      return
+    }
+
     if (item.type === 'toggle') {
       showMessage(
         item.label,
@@ -79,7 +87,12 @@ function Settings() {
           <h3 className="text-xs font-semibold tracking-[0.08em] text-text-secondary">{group.title}</h3>
           <div className="rounded-card bg-white px-4 shadow-soft">
             {group.items.map((item) => (
-              <SettingsItem key={item.id} item={item} onAction={handleSettingsAction} />
+              <SettingsItem
+                key={item.id}
+                item={item}
+                onAction={handleSettingsAction}
+                enabled={item.id === 'appearance' ? isDark : undefined}
+              />
             ))}
           </div>
         </section>

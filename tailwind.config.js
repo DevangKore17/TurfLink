@@ -10,12 +10,13 @@ export default {
           light: '#E8F5E9',
         },
         app: {
-          bg: '#F6F7F8',
-          card: '#FFFFFF',
+          bg: 'rgb(var(--app-bg) / <alpha-value>)',
+          card: 'rgb(var(--app-card) / <alpha-value>)',
+          muted: 'rgb(var(--app-muted) / <alpha-value>)',
         },
         text: {
-          primary: '#1F2937',
-          secondary: '#6B7280',
+          primary: 'rgb(var(--text-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--text-secondary) / <alpha-value>)',
         },
       },
       borderRadius: {

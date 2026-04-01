@@ -140,7 +140,7 @@ function Matchmaking() {
               value={playerQuery}
               onChange={(event) => setPlayerQuery(event.target.value)}
               placeholder="Search by player name or skill"
-              className="h-10 w-full rounded-full bg-[#EEF3F0] pl-9 pr-3 text-xs text-text-primary outline-none"
+              className="h-10 w-full rounded-full bg-app-muted pl-9 pr-3 text-xs text-text-primary outline-none"
             />
           </div>
           <button

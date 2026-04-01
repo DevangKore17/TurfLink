@@ -1,4 +1,4 @@
-import { Bell, Search, ShieldCheck } from 'lucide-react'
+import { Bell, Search } from 'lucide-react'
 
 function Header({ title = 'TURFLINK', showBrand = true }) {
   return (
@@ -6,9 +6,7 @@ function Header({ title = 'TURFLINK', showBrand = true }) {
       <div className="flex items-center gap-2">
         {showBrand ? (
           <>
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-light text-brand-primary">
-              <ShieldCheck size={16} strokeWidth={2.5} />
-            </span>
+            <img src="/TurfLink.png" alt="TurfLink" className="h-7 w-7 rounded-md object-cover" />
             <span className="text-sm font-bold uppercase tracking-[0.15em] text-brand-primary">
               {title}
             </span>

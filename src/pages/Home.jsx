@@ -6,6 +6,7 @@ import FakeLoadingScreen from '../components/FakeLoadingScreen'
 import FakePaymentGateway from '../components/FakePaymentGateway'
 import FeedbackModal from '../components/FeedbackModal'
 import Header from '../components/Header'
+import ThemeToggleButton from '../components/ThemeToggleButton'
 import TurfCard from '../components/TurfCard'
 import { categories } from '../data/categories'
 import { turfs } from '../data/turfs'
@@ -100,16 +101,19 @@ function Home() {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search for sports, turfs, matches..."
-          className="h-full w-full rounded-full bg-[#EEF3F0] pl-11 pr-4 text-sm text-text-secondary outline-none"
+          className="h-full w-full rounded-full bg-app-muted pl-11 pr-4 text-sm text-text-secondary outline-none"
         />
       </div>
 
-      <section className="space-y-1">
-        <h2 className="text-2xl font-bold text-text-primary">Hello, Surya 👋</h2>
-        <p className="flex items-center gap-1.5 text-sm text-text-secondary">
-          <MapPin size={14} />
-          Chennai
-        </p>
+      <section className="flex items-start justify-between gap-3">
+        <div className="space-y-1">
+          <h2 className="text-2xl font-bold text-text-primary">Hello, Surya 👋</h2>
+          <p className="flex items-center gap-1.5 text-sm text-text-secondary">
+            <MapPin size={14} />
+            Chennai
+          </p>
+        </div>
+        <ThemeToggleButton />
       </section>
 
       <BannerCard onViewDetails={handleBannerCta} />

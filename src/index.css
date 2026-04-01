@@ -4,6 +4,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --app-bg: 246 247 248;
+  --app-card: 255 255 255;
+  --app-muted: 238 243 240;
+  --text-primary: 31 41 55;
+  --text-secondary: 107 114 128;
+}
+
+.dark {
+  --app-bg: 12 18 30;
+  --app-card: 22 30 44;
+  --app-muted: 31 41 55;
+  --text-primary: 241 245 249;
+  --text-secondary: 148 163 184;
+}
+
 @layer base {
   * {
     @apply box-border;
@@ -11,6 +27,7 @@
 
   body {
     @apply m-0 bg-app-bg font-sans text-text-primary antialiased;
+    transition: background-color 200ms ease, color 200ms ease;
   }
 
   h1,
@@ -38,7 +55,7 @@
     max-width: 420px;
     margin: 0 auto;
     min-height: 100vh;
-    background: #f6f7f8;
+    background: rgb(var(--app-bg));
     padding: 12px 16px 90px;
   }
 
@@ -53,5 +70,32 @@
 
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@layer utilities {
+  .dark .bg-white {
+    background-color: rgb(var(--app-card)) !important;
+  }
+
+  .dark .bg-\[\#EEF3F0\] {
+    background-color: rgb(var(--app-muted)) !important;
+  }
+
+  .dark .bg-slate-50 {
+    background-color: rgb(30 41 59) !important;
+  }
+
+  .dark .border-slate-100,
+  .dark .border-slate-200 {
+    border-color: rgb(51 65 85) !important;
+  }
+
+  .dark .text-slate-400 {
+    color: rgb(148 163 184) !important;
+  }
+
+  .dark .shadow-soft {
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.35) !important;
   }
 }

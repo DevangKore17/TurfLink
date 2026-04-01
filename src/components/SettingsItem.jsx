@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { ChevronRight } from 'lucide-react'
 
-function SettingsItem({ item, onAction }) {
+function SettingsItem({ item, onAction, enabled: enabledOverride }) {
   const [enabled, setEnabled] = useState(Boolean(item.enabled))
+  const isControlledToggle = item.type === 'toggle' && typeof enabledOverride === 'boolean'
+  const currentEnabled = isControlledToggle ? enabledOverride : enabled
 
   useEffect(() => {
     setEnabled(Boolean(item.enabled))
@@ -10,8 +12,10 @@ function SettingsItem({ item, onAction }) {
 
   const handleClick = () => {
     if (item.type === 'toggle') {
-      const nextValue = !enabled
-      setEnabled(nextValue)
+      const nextValue = !currentEnabled
+      if (!isControlledToggle) {
+        setEnabled(nextValue)
+      }
       onAction?.({ ...item, enabled: nextValue })
       return
     }
@@ -30,12 +34,12 @@ function SettingsItem({ item, onAction }) {
       {item.type === 'toggle' ? (
         <span
           className={`relative inline-flex h-6 w-11 items-center rounded-full transition ${
-            enabled ? 'bg-brand-primary' : 'bg-slate-300'
+            currentEnabled ? 'bg-brand-primary' : 'bg-slate-300'
           }`}
         >
           <span
             className={`inline-block h-5 w-5 transform rounded-full bg-white transition ${
-              enabled ? 'translate-x-5' : 'translate-x-1'
+              currentEnabled ? 'translate-x-5' : 'translate-x-1'
             }`}
           />
         </span>

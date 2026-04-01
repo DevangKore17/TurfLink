@@ -7,8 +7,7 @@ export const coaches = [
     sessions: '120+ Sessions',
     fee: 499,
     badge: 'Pro Certified',
-    image:
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+    image: '/coachimages/Dravid.jpg',
   },
   {
     id: 2,
@@ -18,18 +17,16 @@ export const coaches = [
     sessions: '95+ Sessions',
     fee: 399,
     badge: 'Thala',
-    image:
-      'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
+    image: '/coachimages/Dhoni.jpg',
   },
   {
     id: 3,
-    name: 'Arjun S',
+    name: 'Arjun T',
     sport: 'Cricket',
     rating: 4.7,
     sessions: '150+ Sessions',
     fee: 449,
     badge: 'Elite Trainer',
-    image:
-      'https://images.unsplash.com/photo-1541534401786-2077eed87a72?auto=format&fit=crop&w=400&q=80',
+    image: '/coachimages/arjun.jpg',
   },
 ]
