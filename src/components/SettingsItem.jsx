@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ChevronRight } from 'lucide-react'
 
 function SettingsItem({ item, onAction, enabled: enabledOverride }) {
@@ -6,9 +6,12 @@ function SettingsItem({ item, onAction, enabled: enabledOverride }) {
   const isControlledToggle = item.type === 'toggle' && typeof enabledOverride === 'boolean'
   const currentEnabled = isControlledToggle ? enabledOverride : enabled
 
-  useEffect(() => {
+  const [prevEnabledProp, setPrevEnabledProp] = useState(Boolean(item.enabled))
+  
+  if (Boolean(item.enabled) !== prevEnabledProp) {
+    setPrevEnabledProp(Boolean(item.enabled))
     setEnabled(Boolean(item.enabled))
-  }, [item.enabled])
+  }
 
   const handleClick = () => {
     if (item.type === 'toggle') {
