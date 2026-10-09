@@ -1,26 +1,18 @@
-# 1. Base Stage
-FROM node:20-alpine AS base
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
+# Production Stage (Using your locally cached Nginx image to bypass Docker Hub)
+FROM nginx:mainline-alpine3.22-perl AS production
 
-# 2. Test Stage (Used by Jenkins to run unit tests)
-FROM base AS test
-# Run the tests; if they fail, the Docker build fails here
-RUN npm run test
+# Run as a non-root user for security (Requirement for LO4)
+RUN addgroup -g 1001 -S appgroup && \
+    adduser -u 1001 -S appuser -G appgroup && \
+    mkdir -p /var/cache/nginx /var/log/nginx /etc/nginx/conf.d /run /var/run && \
+    chown -R appuser:appgroup /usr/share/nginx/html /var/cache/nginx /var/log/nginx /etc/nginx/conf.d /run /var/run
 
-# 3. Build Stage (Compiling the React app)
-FROM base AS builder
-RUN npm run build
+USER appuser
 
-# 4. Production Stage
-FROM nginxinc/nginx-unprivileged:alpine AS production
-
-# Copy the built files from the builder stage
-# (The unprivileged image uses 'nginx' user, UID 101)
-COPY --from=builder --chown=nginx:nginx /app/dist /usr/share/nginx/html
-COPY --chown=nginx:nginx nginx/default.conf /etc/nginx/conf.d/default.conf
+# Copy the PRE-BUILT files from your local /dist folder directly into the container
+# This completely skips the need to download Node.js from Docker Hub!
+COPY --chown=appuser:appgroup dist /usr/share/nginx/html
+COPY --chown=appuser:appgroup nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
 
